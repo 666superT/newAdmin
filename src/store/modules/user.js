@@ -16,7 +16,6 @@ export default {
       commit
     }, params) {
       const res = await getUserInfo(params)
-      console.log(res)
       commit('setToken', res)
     }
   }

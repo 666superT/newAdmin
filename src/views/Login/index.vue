@@ -59,7 +59,6 @@ const loginRules = reactive({
 })
 // 登录按钮
 const handelLogin = async () => {
-  console.log(LoginForm)
   if (!LoginForm.value) return
   await LoginForm.value.validate((valid) => {
     if (valid) {

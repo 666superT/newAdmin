@@ -1,5 +1,8 @@
 import axios from 'axios'
 import md5 from 'md5'
+import {
+  loding
+} from '../utils/loding'
 const http = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 50000
@@ -7,6 +10,7 @@ const http = axios.create({
 // 请求拦截
 http.interceptors.request.use(
   (config) => {
+    loding.open()
     const {
       icode,
       time
@@ -16,14 +20,17 @@ http.interceptors.request.use(
 
     return config
   }, (err) => {
+    loding.close()
     return Promise.reject(err)
   }
 )
 // 响应拦截
 http.interceptors.response.use(
   (res) => {
+    loding.close()
     return res
   }, (err) => {
+    loding.close()
     return Promise.reject(err)
   }
 )
