@@ -1,0 +1,22 @@
+import axios from 'axios'
+const http = axios.create({
+  baseURL: process.env.VUE_APP_BASE_API,
+  timeout: 50000
+})
+// 请求拦截
+http.interceptors.request.use(
+  (config) => {
+    return config
+  }, (err) => {
+    return Promise.reject(err)
+  }
+)
+// 响应拦截
+http.interceptors.response.use(
+  (res) => {
+    return res
+  }, (err) => {
+    return Promise.reject(err)
+  }
+)
+export default http
