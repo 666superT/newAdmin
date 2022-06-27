@@ -1,4 +1,5 @@
 import axios from 'axios'
+import md5 from 'md5'
 const http = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 50000
@@ -6,6 +7,13 @@ const http = axios.create({
 // 请求拦截
 http.interceptors.request.use(
   (config) => {
+    const {
+      icode,
+      time
+    } = getTestICode()
+    config.headers.icode = icode
+    config.headers.codeType = time
+
     return config
   }, (err) => {
     return Promise.reject(err)
@@ -19,4 +27,21 @@ http.interceptors.response.use(
     return Promise.reject(err)
   }
 )
-export default http
+
+// 实现code
+function getTestICode() {
+  const now = parseInt(Date.now() / 1000)
+  const code = now + 'LGD_Sunday-1991'
+  return {
+    icode: md5(code),
+    time: now
+  }
+}
+const request = (options) => {
+  if (options.method.toLowerCase() === 'get') {
+    options.params = options.data || {}
+  }
+  return http(options)
+}
+
+export default request

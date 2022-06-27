@@ -19,7 +19,13 @@
           </el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input v-model="loginForm.password" placeholder="password" />
+          <el-input v-model="loginForm.password" placeholder="password">
+            <template #suffix>
+              <el-icon>
+                <svg-icon :icon="eye"></svg-icon>
+              </el-icon>
+            </template>
+          </el-input>
         </el-form-item>
         <el-button
           type="primary"
@@ -33,29 +39,35 @@
 </template>
 
 <script setup>
-import { User } from '@element-plus/icons-vue'
-import { reactive } from 'vue'
+import md5 from 'md5'
+import { reactive, ref } from 'vue'
 import { passwordValidator } from './validator.js'
-import { getUserInfo } from '../../api/login'
+import { useStore } from 'vuex'
+import util from '../../utils/util'
 // 登录表单
 const loginForm = reactive({
-  username: '',
-  password: ''
+  username: 'admin',
+  password: '123456'
 })
+
+const store = useStore()
+const LoginForm = ref()
 // 表单校验
 const loginRules = reactive({
   username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
   password: [{ required: true, validator: passwordValidator, trigger: 'blur' }]
 })
 // 登录按钮
-const handelLogin = async (formName) => {
-  // console.log(formName)
-  // if (!formName) return
-  // await formName.validate((valid) => {
-  //   console.log(valid)
-  // })
-  const res = await getUserInfo(loginForm)
-  console.log(res)
+const handelLogin = async () => {
+  console.log(LoginForm)
+  if (!LoginForm.value) return
+  await LoginForm.value.validate((valid) => {
+    if (valid) {
+      const newLoginForm = util.deepCopy(loginForm)
+      newLoginForm.password = md5(newLoginForm.password)
+      store.dispatch('user/handelLogin', newLoginForm)
+    }
+  })
 }
 </script>
 
