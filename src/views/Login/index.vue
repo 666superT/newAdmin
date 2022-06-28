@@ -46,7 +46,7 @@ import { useStore } from 'vuex'
 import util from '../../utils/util'
 // 登录表单
 const loginForm = reactive({
-  username: 'admin',
+  username: "admin",
   password: '123456'
 })
 
