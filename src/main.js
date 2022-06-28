@@ -8,6 +8,8 @@ import './styles/index.min.css'
 import './iconfont/iconfont.css'
 import installIcons from './icons/index.js'
 
+import './permission'
+
 const app = createApp(App)
 installIcons(app)
 

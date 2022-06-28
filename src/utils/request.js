@@ -1,11 +1,12 @@
 import axios from 'axios'
 import md5 from 'md5'
+import { ElMessage } from 'element-plus'
 import {
   loding
 } from '../utils/loding'
 const http = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
-  timeout: 50000
+  timeout: 5000
 })
 // 请求拦截
 http.interceptors.request.use(
@@ -28,12 +29,27 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   (res) => {
     loding.close()
-    return res
+    const { data, message, success } = res.data
+    if (success) {
+      ElMessage({ message, type: 'success' })
+      return data
+    } else {
+      _showMessage(message)
+      return data
+    }
+    // return res
   }, (err) => {
     loding.close()
+
     return Promise.reject(err)
   }
 )
+
+// 提示信息
+function _showMessage(message) {
+  const msg = message || '未知错误'
+  ElMessage.error(msg)
+}
 
 // 实现code
 function getTestICode() {

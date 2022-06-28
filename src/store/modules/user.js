@@ -1,6 +1,8 @@
 import {
   getUserInfo
 } from '../../api/login'
+
+import router from '@/router'
 export default {
   namespaced: true,
   state: () => ({
@@ -8,15 +10,23 @@ export default {
   }),
   mutations: {
     setToken(state, res) {
-      state.token = res.data.data.token
+      state.token = res.token
     }
   },
   actions: {
     async handelLogin({
       commit
     }, params) {
-      const res = await getUserInfo(params)
-      commit('setToken', res)
+      try {
+        const res = await getUserInfo(params)
+        if (res) {
+          commit('setToken', res)
+          // console.log(res)
+          router.push('/')
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }

@@ -3,27 +3,35 @@
     <div class="login_form">
       <div class="title">
         <h1>用户登录</h1>
-        <i>icon</i>
+        <i style="font-size: 25px">
+          <svg-icon icon="language"></svg-icon>
+        </i>
       </div>
-      <el-form
-        ref="LoginForm"
-        :model="loginForm"
-        status-icon
-        :rules="loginRules"
-      >
+      <el-form ref="LoginForm" :model="loginForm" :rules="loginRules">
         <el-form-item prop="username">
-          <el-input v-model="loginForm.username" placeholder="username">
+          <el-input
+            v-model="loginForm.username"
+            placeholder="username"
+            type="text"
+          >
             <template #prefix>
-              <el-icon><User /></el-icon>
+              <svg-icon icon="user"></svg-icon>
             </template>
           </el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input v-model="loginForm.password" placeholder="password">
+          <el-input
+            v-model="loginForm.password"
+            :type="flag ? 'text' : 'password'"
+          >
+            <template #prefix>
+              <svg-icon icon="password"></svg-icon>
+            </template>
             <template #suffix>
-              <el-icon>
-                <svg-icon :icon="eye"></svg-icon>
-              </el-icon>
+              <span @click="flag = !flag">
+                <svg-icon v-if="!flag" icon="eye"></svg-icon>
+                <svg-icon v-else icon="eye-open"></svg-icon>
+              </span>
             </template>
           </el-input>
         </el-form-item>
@@ -46,12 +54,15 @@ import { useStore } from 'vuex'
 import util from '../../utils/util'
 // 登录表单
 const loginForm = reactive({
-  username: "admin",
+  username: 'super-admin',
   password: '123456'
 })
 
 const store = useStore()
 const LoginForm = ref()
+
+// true密码可见
+const flag = ref(false)
 // 表单校验
 const loginRules = reactive({
   username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
@@ -94,6 +105,8 @@ const handelLogin = async () => {
         position: absolute;
         right: 0;
         top: 0;
+        text-align: center;
+        line-height: 30px;
       }
     }
     .el-form-item {
@@ -104,6 +117,7 @@ const handelLogin = async () => {
       ::v-deep .el-input {
         input {
           color: #fff !important;
+          background: transparent !important;
         }
       }
       ::v-deep .el-input__wrapper {
