@@ -1,5 +1,6 @@
 <template>
-    <div class=''>main</div>
+    <router-view></router-view>
+     <div v-for="v in 1000" :key="v">{{v}}</div>
 </template>
 
 <script setup>

@@ -40,7 +40,9 @@ http.interceptors.response.use(
     // return res
   }, (err) => {
     loding.close()
-
+    if (err.name === 'AxiosError') {
+      _showMessage('请求超时')
+    }
     return Promise.reject(err)
   }
 )
