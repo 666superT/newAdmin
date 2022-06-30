@@ -1,9 +1,9 @@
 import axios from 'axios'
 import md5 from 'md5'
 import { ElMessage } from 'element-plus'
-import {
-  loding
-} from '../utils/loding'
+import { loding } from '../utils/loding'
+import store from '../store'
+
 const http = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
@@ -12,15 +12,18 @@ const http = axios.create({
 http.interceptors.request.use(
   (config) => {
     loding.open()
-    const {
-      icode,
-      time
-    } = getTestICode()
+    const { icode, time } = getTestICode()
     config.headers.icode = icode
     config.headers.codeType = time
 
+    // 在这个位置需要统一的去注入token
+    if (store.getters.token) {
+      // 如果token存在 注入token
+      config.headers.Authorization = `Bearer ${store.getters.token}`
+    }
     return config
-  }, (err) => {
+  },
+  (err) => {
     loding.close()
     return Promise.reject(err)
   }
@@ -38,10 +41,11 @@ http.interceptors.response.use(
       return data
     }
     // return res
-  }, (err) => {
+  },
+  (err) => {
     loding.close()
-    if (err.name === 'AxiosError') {
-      _showMessage('请求超时')
+    if (err.response.status === 401) {
+      store.dispatch('user/logOut')
     }
     return Promise.reject(err)
   }

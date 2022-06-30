@@ -1,13 +1,15 @@
 import http from '../utils/request'
-
-function getUserInfo(params) {
+// 登录
+function login(params) {
   return http({
     url: '/sys/login',
     method: 'post',
     data: params
   })
 }
-
-export {
-  getUserInfo
+// 获取用户信息
+function getUserInfo() {
+  return http({ url: '/sys/profile', method: 'get' })
 }
+
+export { getUserInfo, login }

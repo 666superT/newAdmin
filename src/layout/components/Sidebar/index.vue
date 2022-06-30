@@ -1,6 +1,7 @@
 <template>
   <div class="sidebar">
-    <menu-tree :data=data></menu-tree>
+    <h1>vue-admin-template</h1>
+    <menu-tree :data="data"></menu-tree>
   </div>
 </template>
 
@@ -9,7 +10,7 @@ import { reactive } from '@vue/reactivity'
 import menuTree from './MenuTree'
 
 const data = reactive([
-  { title: '个人中心', path: '/', icon: 'Avatar' },
+  { title: '个人中心', path: '/profile', icon: 'Avatar' },
   { title: '数据可视化', path: '/data', icon: 'Avatar' },
   {
     title: '用户',
@@ -32,7 +33,14 @@ const data = reactive([
 </script>
 
 <style lang="scss" scoped>
-.sidebar{
+.sidebar {
   position: fixed;
+  h1 {
+    background: #070a0d;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+  }
 }
 </style>

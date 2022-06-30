@@ -6,7 +6,7 @@
     <div class="main-container">
       <div class="fixed-header">
         <!-- 顶部的 navbar -->
-        <navbar/>
+        <navbar />
         <tags-view></tags-view>
       </div>
       <!-- 内容区 -->
@@ -30,19 +30,19 @@ import TagsView from '../components/TagsView.vue'
   overflow: auto;
   float: left;
 }
-.main-container{
-    width : calc(100% - 210px);
-    height : 100%;
-    margin-left : 210px;
-    position: relative;
-    padding: 104px 20px 20px 20px;
-    box-sizing: border-box;
-    .fixed-header{
-      position: fixed;
-      top: 0;
-      right: 0;
-      z-index: 9;
-      width: calc(100% - 210px);
-    }
+.main-container {
+  width: calc(100% - 210px);
+  height: 100%;
+  margin-left: 210px;
+  position: relative;
+  padding: 104px 20px 20px 20px;
+  box-sizing: border-box;
+  .fixed-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9;
+    width: calc(100% - 210px);
   }
+}
 </style>

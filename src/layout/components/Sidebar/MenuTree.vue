@@ -2,7 +2,7 @@
   <el-menu
     active-text-color="#fff"
     background-color="#304156"
-    default-active="1"
+    default-active="/profile"
     text-color="#bfcbd9"
     router
   >

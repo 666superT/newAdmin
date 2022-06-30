@@ -5,10 +5,14 @@ const whiteList = ['/login']
 router.beforeEach((to, from, next) => {
   const token = store.getters.token
   if (token) {
-    if (whiteList.includes(to.path)) {
-      next(from.path)
-    } else {
-      next()
+    const res = store.dispatch('user/getUser')
+    // console.log(res)
+    if (res) {
+      if (whiteList.includes(to.path)) {
+        next(from.path)
+      } else {
+        next()
+      }
     }
   } else {
     if (whiteList.includes(to.path)) {
