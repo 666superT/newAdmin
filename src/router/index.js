@@ -15,21 +15,21 @@ const publicRoutes = [
     redirect: '/profile',
     children: [
       {
-        path: '/chart',
-        name: 'chart',
-        component: () => import('../views/chart'),
-        meta: {
-          title: '数据可视化',
-          icon: 'chart'
-        }
-      },
-      {
         path: '/profile',
         name: 'profile',
         component: () => import('../views/profile'),
         meta: {
           title: '个人中心',
           icon: 'personnel'
+        }
+      },
+      {
+        path: '/chart',
+        name: 'chart',
+        component: () => import('../views/chart'),
+        meta: {
+          title: '数据可视化',
+          icon: 'chart-bar'
         }
       },
       {

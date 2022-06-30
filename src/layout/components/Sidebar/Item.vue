@@ -1,21 +1,23 @@
 <template>
   <template v-if="props.item && !props.item.children">
-    <el-menu-item :index="item.path">
+    <el-menu-item :index="props.item.path">
       <el-icon>
-        <svg-icon icon='personnel'></svg-icon>
+        <svg-icon :icon='props.item.meta.icon'></svg-icon>
       </el-icon>
-      <span>{{ item.title }}</span>
+      <span>{{ props.item.meta.title }}</span>
     </el-menu-item>
   </template>
   <template
     v-if="props.item && props.item.children && props.item.children.length > 0"
   >
-      <el-sub-menu :index="item.path">
+      <el-sub-menu :index="props.item.path">
         <template #title>
-          <el-icon>6</el-icon>
-          <span>{{item.title}}</span>
+          <el-icon>
+            <svg-icon :icon='props.item.meta.icon'></svg-icon>
+          </el-icon>
+          <span>{{props.item.meta.title}}</span>
         </template>
-        <Item v-for="v in item.children" :key="v" :item="v"></Item>
+        <Item v-for="v in props.item.children" :key="v" :item="v"></Item>
       </el-sub-menu>
     </template>
 </template>
@@ -28,6 +30,8 @@ const props = defineProps({
     default: () => {}
   }
 })
+
+console.log('888=>', props.item)
 </script>
 
 <style lang="scss" scoped></style>

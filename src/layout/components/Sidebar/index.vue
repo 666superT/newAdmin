@@ -6,30 +6,17 @@
 </template>
 
 <script setup>
-import { reactive } from '@vue/reactivity'
+import { computed } from 'vue'
 import menuTree from './MenuTree'
+import { useRouter } from 'vue-router'
+import { filterRouters, generateMenus } from '../../../utils/filterRouter'
+import { filterMenuData } from '../../../utils/menu'
 
-const data = reactive([
-  { title: '个人中心', path: '/profile', icon: 'Avatar' },
-  { title: '数据可视化', path: '/data', icon: 'Avatar' },
-  {
-    title: '用户',
-    icon: 'Avatar',
-    children: [
-      { title: '员工管理', path: '/66', icon: 'Avatar' },
-      { title: '角色管理', path: '/66', icon: 'Avatar' },
-      { title: '权限管理', path: '/66', icon: 'Avatar' }
-    ]
-  },
-  {
-    title: '文章',
-    icon: 'Avatar',
-    children: [
-      { title: '文章排名', icon: 'Avatar', path: '/88' },
-      { title: '创建文章', icon: 'Avatar', path: '/88' }
-    ]
-  }
-])
+const router = useRouter()
+const data = computed(() => {
+  const routes = filterRouters(router.getRoutes())
+  return filterMenuData(generateMenus(routes))
+})
 </script>
 
 <style lang="scss" scoped>
