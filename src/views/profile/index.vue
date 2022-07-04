@@ -14,11 +14,16 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="18"><div class="grid-content ep-bg-purple" /></el-col>
+      <el-col :span="18">
+        <t-icon name="icon-hetao" size="100" color="red"></t-icon>
+        <t-icon name='icon-kuihuazi' size='200' color='#50d05e'></t-icon>
+      </el-col>
     </el-row>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import TIcon from '../../components/TIcon.vue'
+</script>
 
 <style lang="scss" scoped></style>

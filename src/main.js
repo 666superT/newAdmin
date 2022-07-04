@@ -9,6 +9,7 @@ import './iconfont/iconfont.css'
 import installIcons from './icons/index.js'
 
 import './permission'
+import './iconfont/demo.css'
 
 const app = createApp(App)
 installIcons(app)

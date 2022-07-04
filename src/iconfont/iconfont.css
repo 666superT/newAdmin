@@ -1,8 +1,8 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 3485403 */
-  src: url('iconfont.woff2?t=1656229920044') format('woff2'),
-       url('iconfont.woff?t=1656229920044') format('woff'),
-       url('iconfont.ttf?t=1656229920044') format('truetype');
+  font-family: "iconfont"; /* Project id 3499440 */
+  src: url('iconfont.woff2?t=1656932559669') format('woff2'),
+       url('iconfont.woff?t=1656932559669') format('woff'),
+       url('iconfont.ttf?t=1656932559669') format('truetype');
 }
 
 .iconfont {
@@ -13,39 +13,27 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-icon-test:before {
+.icon-kaixinguo:before {
+  content: "\e630";
+}
+
+.icon-hetao:before {
+  content: "\e631";
+}
+
+.icon-xiaweiyiguo:before {
+  content: "\e632";
+}
+
+.icon-huasheng:before {
   content: "\e633";
 }
 
-.icon-icon-test1:before {
+.icon-bigenguo:before {
   content: "\e634";
 }
 
-.icon-icon-test2:before {
+.icon-kuihuazi:before {
   content: "\e635";
-}
-
-.icon-icon-test3:before {
-  content: "\e636";
-}
-
-.icon-icon-test4:before {
-  content: "\e637";
-}
-
-.icon-icon-test5:before {
-  content: "\e638";
-}
-
-.icon-icon-test6:before {
-  content: "\e639";
-}
-
-.icon-icon-test7:before {
-  content: "\e63a";
-}
-
-.icon-icon-test8:before {
-  content: "\e63b";
 }
 
