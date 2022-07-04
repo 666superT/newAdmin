@@ -23,6 +23,7 @@
           <el-input
             v-model="loginForm.password"
             :type="flag ? 'text' : 'password'"
+            placeholder="password"
           >
             <template #prefix>
               <svg-icon icon="password"></svg-icon>

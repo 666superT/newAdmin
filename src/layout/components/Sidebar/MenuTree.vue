@@ -2,7 +2,7 @@
   <el-menu
     active-text-color="#fff"
     background-color="#304156"
-    default-active="/profile"
+    :default-active="$route.path"
     text-color="#bfcbd9"
     router
   >
@@ -22,4 +22,8 @@ const props = defineProps({
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-menu {
+  border: none;
+}
+</style>

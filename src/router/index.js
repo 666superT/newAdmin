@@ -29,7 +29,7 @@ const publicRoutes = [
         component: () => import('../views/chart'),
         meta: {
           title: '数据可视化',
-          icon: 'chart-bar'
+          icon: 'bar chart'
         }
       },
       {
@@ -52,7 +52,7 @@ const privateRouter = [
     path: '/user',
     name: 'user',
     component: layout,
-    redirect: '/user/usermanage',
+    redirect: '/user/manage',
     meta: {
       title: '用户',
       icon: 'personnel'

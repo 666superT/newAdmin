@@ -4,7 +4,9 @@
       <div class="svg">
         <svg-icon icon="hamburger-opened"></svg-icon>
       </div>
-      <div class="title">个人中心</div>
+      <div class="title">
+        <Breadcrumb :breadcrumbData="breadcrumbData"></Breadcrumb>
+      </div>
     </div>
     <div class="right">
       <el-dropdown trigger="click" @command="handleCommand">
@@ -28,7 +30,8 @@
 <script setup>
 import { useStore } from 'vuex'
 import { useRouter, useRoute } from 'vue-router'
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
+import Breadcrumb from '../../components/Breadcrumb.vue'
 
 const store = useStore()
 const router = useRouter()
@@ -52,17 +55,13 @@ const goHome = () => router.push('/')
 const avatar = computed(() => {
   return store.getters.userInfo.avatar
 })
+
 /**
- * 监听当前页面
+ * 当前所在页面路由
  */
-// TODO根据当前页面获取路由内的页面信息
-watch(
-  () => route.path,
-  (count, prevCount) => {
-    console.log(count)
-    console.log(prevCount)
-  }
-)
+const breadcrumbData = computed(() => {
+  return route.matched.filter((v) => v.meta.title && v.meta.icon)
+})
 </script>
 
 <style lang="scss" scoped>
@@ -88,8 +87,9 @@ watch(
     padding: 0 16px;
   }
   .title {
-    color: red;
-    margin-left: 8px;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
   }
 }
 .svg:hover {

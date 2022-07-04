@@ -1,11 +1,13 @@
 import { createStore } from 'vuex'
 import user from './modules/user'
+import tags from './modules/tags'
 import vuexp from 'vuex-persistedstate'
 import { getters } from './getters.js'
 export default createStore({
   getters,
   modules: {
-    user
+    user,
+    tags
   },
   plugins: [vuexp()]
 })

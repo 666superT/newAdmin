@@ -21,6 +21,7 @@ const data = computed(() => {
 
 <style lang="scss" scoped>
 .sidebar {
+  width: 50px;
   position: fixed;
   h1 {
     background: #070a0d;
@@ -29,5 +30,9 @@ const data = computed(() => {
     text-align: center;
     padding: 20px 0;
   }
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 </style>

@@ -46,3 +46,7 @@ div:focus {
   clear: both;
   height: 0;
 }
+
+ul {
+  list-style: none;
+}
